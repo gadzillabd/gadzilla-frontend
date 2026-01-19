@@ -94,13 +94,6 @@ function GadgetsPageContent() {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-
-          {/* Load More */}
-          <div className={styles.loadMore}>
-            <button className={styles.loadMoreBtn}>
-              Load More Products
-            </button>
-          </div>
         </div>
       </div>
 
