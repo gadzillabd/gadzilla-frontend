@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ArrowUpDown, SlidersHorizontal } from 'lucide-react';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ const subcategoryMap: Record<string, string> = {
   'drones': 'Drones',
 };
 
-export default function GadgetsPage() {
+function GadgetsPageContent() {
   const searchParams = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -119,5 +119,13 @@ export default function GadgetsPage() {
         onSortChange={setSelectedSort}
       />
     </div>
+  );
+}
+
+export default function GadgetsPage() {
+  return (
+    <Suspense fallback={<div className={styles.page}><div className={styles.container}>Loading...</div></div>}>
+      <GadgetsPageContent />
+    </Suspense>
   );
 }

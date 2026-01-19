@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ArrowUpDown, SlidersHorizontal } from 'lucide-react';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ const subcategoryMap: Record<string, string> = {
   'bags': 'Bags & Sleeves',
 };
 
-export default function AccessoriesPage() {
+function AccessoriesPageContent() {
   const searchParams = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -119,5 +119,13 @@ export default function AccessoriesPage() {
         onSortChange={setSelectedSort}
       />
     </div>
+  );
+}
+
+export default function AccessoriesPage() {
+  return (
+    <Suspense fallback={<div className={styles.page}><div className={styles.container}>Loading...</div></div>}>
+      <AccessoriesPageContent />
+    </Suspense>
   );
 }
