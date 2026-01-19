@@ -1,0 +1,30 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-sm);
+}
+
+.sale {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.new {
+  background-color: var(--color-feature-green);
+  color: var(--color-text-primary);
+}
+
+.hot {
+  background-color: #FF6B35;
+  color: white;
+}
+
+.default {
+  background-color: var(--color-bg-section);
+  color: var(--color-text-secondary);
+}

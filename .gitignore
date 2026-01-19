@@ -1,0 +1,36 @@
+.DS_Store
+
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# builds
+dist/
+build/
+
+# production
+.vercel/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# local env files
+.env
+.env.*
+!.env.example
+
+# testing
+coverage/
+
+# misc
+.swc/
+*.tsbuildinfo
+
