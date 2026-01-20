@@ -45,7 +45,6 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const cartCount = 3; // This would come from cart state
 
   // Build current URL for comparison
   const currentUrl = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
@@ -171,12 +170,10 @@ export default function Header() {
             <Link href="/wishlist" className={styles.actionBtn} aria-label="Wishlist">
               <Heart size={22} />
             </Link>
-            <button className={styles.actionBtn} aria-label="Cart">
+            <Link href="/cart" className={styles.actionBtn} aria-label="Cart">
               <ShoppingBag size={22} />
-              {cartCount > 0 && (
-                <span className={styles.cartBadge}>{cartCount}</span>
-              )}
-            </button>
+              <span className={styles.cartBadge}>*</span>
+            </Link>
           </div>
         </div>
 
