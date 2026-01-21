@@ -3,9 +3,10 @@ import Link from 'next/link';
 import styles from './FeaturedProducts.module.css';
 
 import { getCategories } from '@/lib/api';
+import type { Category } from '@/types/product';
 
 export default async function FeaturedProducts() {
-  let productCategories = [];
+  let productCategories: Category[] = [];
   try {
     productCategories = await getCategories();
   } catch (error) {
