@@ -5,7 +5,12 @@ import styles from './FeaturedProducts.module.css';
 import { getCategories } from '@/lib/api';
 
 export default async function FeaturedProducts() {
-  const productCategories = await getCategories();
+  let productCategories = [];
+  try {
+    productCategories = await getCategories();
+  } catch (error) {
+    console.error('Failed to load categories:', error);
+  }
 
   return (
     <section className={styles.section}>

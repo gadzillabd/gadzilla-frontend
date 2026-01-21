@@ -72,11 +72,18 @@ function BrandSection({ title, brands }: BrandSectionProps) {
 }
 
 export default async function BrandShowcase() {
-  // Fetch brands from the backend
-  const [accessoriesBrands, gadgetsBrands] = await Promise.all([
-    getBrandShowcase('accessories'),
-    getBrandShowcase('gadgets'),
-  ]);
+  // Fetch brands from the backend.
+  // During build/prerender the API may be unavailable; fall back gracefully.
+  let accessoriesBrands: Brand[] = [];
+  let gadgetsBrands: Brand[] = [];
+  try {
+    [accessoriesBrands, gadgetsBrands] = await Promise.all([
+      getBrandShowcase('accessories'),
+      getBrandShowcase('gadgets'),
+    ]);
+  } catch (error) {
+    console.error('Failed to load brand showcase:', error);
+  }
 
   return (
     <section className={styles.section}>
