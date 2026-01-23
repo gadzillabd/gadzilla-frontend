@@ -178,10 +178,12 @@ export default function AccessoriesPageClient({
               ))
             ) : (
               <div className={styles.noProducts}>
-                <p>No products found in this category.</p>
-                <Link href="/accessories" className={styles.resetLink}>
-                  View all accessories
-                </Link>
+                <p>{typeParam || brandParam ? 'No accessories found in this category' : 'No accessories found'}</p>
+                {(typeParam || brandParam) && (
+                  <Link href="/accessories" className={styles.resetLink}>
+                    View all accessories
+                  </Link>
+                )}
               </div>
             )}
           </div>

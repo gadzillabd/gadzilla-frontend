@@ -180,10 +180,12 @@ export default function GadgetsPageClient({
               ))
             ) : (
               <div className={styles.noProducts}>
-                <p>No products found in this category.</p>
-                <Link href="/gadgets" className={styles.resetLink}>
-                  View all gadgets
-                </Link>
+                <p>{typeParam || brandParam ? 'No gadgets found in this category' : 'No gadgets found'}</p>
+                {(typeParam || brandParam) && (
+                  <Link href="/gadgets" className={styles.resetLink}>
+                    View all gadgets
+                  </Link>
+                )}
               </div>
             )}
           </div>
