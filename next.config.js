@@ -14,7 +14,31 @@ const getApiConfig = () => {
   }
 };
 
+const getMediaConfig = () => {
+  const mediaDomain = process.env.NEXT_PUBLIC_MEDIA_DOMAIN;
+  if (!mediaDomain) return null;
+  try {
+    // If it's a full URL, parse it
+    if (mediaDomain.startsWith('http://') || mediaDomain.startsWith('https://')) {
+      const url = new URL(mediaDomain);
+      return {
+        protocol: url.protocol.replace(':', ''),
+        hostname: url.hostname,
+        port: url.port || undefined,
+      };
+    }
+    // If it's just a domain, assume HTTPS
+    return {
+      protocol: 'https',
+      hostname: mediaDomain,
+    };
+  } catch {
+    return null;
+  }
+};
+
 const apiConfig = getApiConfig();
+const mediaConfig = getMediaConfig();
 
 const remotePatterns = [
   {
@@ -28,6 +52,16 @@ const remotePatterns = [
     pathname: '/**',
   },
 ];
+
+// Add media domain if configured
+if (mediaConfig) {
+  remotePatterns.push({
+    protocol: mediaConfig.protocol,
+    hostname: mediaConfig.hostname,
+    ...(mediaConfig.port && { port: mediaConfig.port }),
+    pathname: '/**',
+  });
+}
 
 // Add API hostname if configured
 if (apiConfig) {

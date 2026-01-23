@@ -133,13 +133,16 @@ Or connect your GitHub repository to Vercel for automatic deployments.
 
 ## 📝 Environment Variables
 
-Set the following environment variable in your Vercel project settings:
+Set the following environment variables in your Vercel project settings:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=https://api.gadzillabd.com
+NEXT_PUBLIC_MEDIA_DOMAIN=media.gadzillabd.com
 ```
 
-**Required:** This environment variable must be set for the application to work.
+**Required:** Both environment variables must be set for the application to work.
+- `NEXT_PUBLIC_API_BASE_URL`: Backend API base URL
+- `NEXT_PUBLIC_MEDIA_DOMAIN`: Media/CDN domain for product images (can be full URL or just domain name)
 
 ## 🤝 Contributing
 
