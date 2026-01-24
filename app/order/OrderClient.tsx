@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Plus, Minus, X, Trash2, Loader2 } from 'lucide-react';
+import { Plus, Minus, X, Trash2 } from 'lucide-react';
+import { Spinner } from '@/components/ui';
 import Image from 'next/image';
 import type { ProductDetail, Product } from '@/types/product';
 import styles from './Order.module.css';
@@ -262,7 +263,7 @@ export default function OrderClient({ initialProducts, availableProducts = [] }:
     const price = typeof item.price === 'string' ? Number(item.price) : item.price;
     return sum + price * item.quantity;
   }, 0);
-  const shipping = formData.deliveryArea === 'inside' ? 40 : 150;
+  const shipping = formData.deliveryArea === 'inside' ? 60 : 150;
   const total = subtotal + shipping;
 
   return (
@@ -428,7 +429,7 @@ export default function OrderClient({ initialProducts, availableProducts = [] }:
                             >
                               {isLoading ? (
                                 <div className={styles.productPickerLoading}>
-                                  <Loader2 size={24} className={styles.spinner} />
+                                  <Spinner size="md" color="#ff4444" />
                                 </div>
                               ) : (
                                 <>
@@ -551,7 +552,7 @@ export default function OrderClient({ initialProducts, availableProducts = [] }:
                         className={styles.radio}
                       />
                       <span className={styles.deliveryLabel}>Inside Dhaka City</span>
-                      <span className={styles.deliveryPrice}>৳40</span>
+                      <span className={styles.deliveryPrice}>৳60</span>
                     </label>
                     <label className={styles.deliveryOption}>
                       <input
@@ -588,7 +589,7 @@ export default function OrderClient({ initialProducts, availableProducts = [] }:
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 size={18} className={styles.spinner} style={{ marginRight: '8px', display: 'inline-block' }} />
+                      <Spinner size="sm" color="#ffffff" className={styles.buttonSpinner} />
                       Placing Order...
                     </>
                   ) : (

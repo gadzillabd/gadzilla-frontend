@@ -664,3 +664,8 @@
     width: 100%;
   }
 }
+
+.buttonSpinner {
+  margin-right: 8px;
+  display: inline-block;
+}
